@@ -49,14 +49,14 @@ jobs:
             cat > ~/.netrc <<EOF
               machine api.heroku.com
                 login $HEROKU_EMAIL
-                password $alexandrebaccega@hotmail.com
+                password $HEROKU_API_KEY
               machine git.heroku.com
                 login $HEROKU_EMAIL
-                password $8a21407d-2fab-404f-ad66-4b439f03af94
+                password $HEROKU_EMAIL
             EOF
         env:
-            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-            HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+            HEROKU_API_KEY: ${{ secrets.alexandrebaccega@hotmail.com }}
+            HEROKU_EMAIL: ${{ secrets.8a21407d-2fab-404f-ad66-4b439f03af94 }}
 
       # Adicionando o Repositório Remoto do Heroku para poder enviar o código da app
       - name: Add Heroku Remote
