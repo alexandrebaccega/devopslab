@@ -55,8 +55,8 @@ jobs:
                 password $HEROKU_EMAIL
             EOF
         env:
-            HEROKU_API_KEY: ${{ alexandrebaccega@hotmail.com }}
-            HEROKU_EMAIL: ${{ 8a21407d-2fab-404f-ad66-4b439f03af94 }}
+            HEROKU_API_KEY: ${{ $HEROKU_API_KEY }}
+            HEROKU_EMAIL: ${{ $HEROKU_EMAIL }}
 
       # Adicionando o Repositório Remoto do Heroku para poder enviar o código da app
       - name: Add Heroku Remote
