@@ -11,26 +11,19 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Setup Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.12.0-alpha.7'
-
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Install Requirements
-        run:  pip install flask flask-wtf
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.11'
 
+      - name: Install Requirements
+        run:  pip install flask
+              
       - name: Unit Test
         run: python -m unittest -v test
-
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
 
   Deploy:
     needs: Build
@@ -52,11 +45,11 @@ jobs:
                 password $HEROKU_API_KEY
               machine git.heroku.com
                 login $HEROKU_EMAIL
-                password $HEROKU_EMAIL
+                password $HEROKU_API_KEY
             EOF
         env:
-            HEROKU_API_KEY: ${{ secret.$HEROKU_API_KEY }}
-            HEROKU_EMAIL: ${{ secret.$HEROKU_EMAIL }}
+            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+            HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
       # Adicionando o Repositório Remoto do Heroku para poder enviar o código da app
       - name: Add Heroku Remote
