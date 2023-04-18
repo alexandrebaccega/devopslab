@@ -30,13 +30,13 @@ jobs:
       #- name: Unit Test
       #  run: python -m unittest -v test
       
-      #- name: SonarCloud Scan
-      #  uses: SonarSource/sonarcloud-github-action@master
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #  with: #adicionado Baccega
-      #    projectBaseDir: alexandrebaccega_devopslab #adicionado Baccega
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with: 
+          projectBaseDir: alexandrebaccega_devopslab 
 
   Deploy:
     needs: Build
